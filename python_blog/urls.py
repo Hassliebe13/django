@@ -10,13 +10,13 @@ from python_blog.views import (
 )
 
 urlpatterns = [
-    # Посты
-    path("", catalog_posts),
-    path("<slug:slug>/", post_detail),
     # Категории
     path("categories/", catalog_categories),
     path("categories/<slug:slug>/", category_detail),
     # Теги
     path("tags/", catalog_tags),
     path("tags/<slug:slug>/", tag_detail),
+    # Посты
+    path("", catalog_posts),
+    path("<slug:slug>/", post_detail),
 ]
