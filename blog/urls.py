@@ -5,7 +5,7 @@ from django.urls import include
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("<str:name>/", main),
+    path("", main),
     # Подключение python_blog.urls
     path("posts/", include("python_blog.urls")),
 ]
