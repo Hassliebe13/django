@@ -9,6 +9,8 @@ from python_blog.views import (
     tag_detail,
 )
 
+app_name = "blog"
+
 urlpatterns = [
     # Каталог постов posts/
     path("", catalog_posts, name="posts"),
@@ -16,7 +18,7 @@ urlpatterns = [
     path("categories/", catalog_categories, name="categories"),
     path("categories/<slug:category_slug>/", category_detail, name="category_detail"),
     # Теги
-    path("tags/", catalog_tags),
+    path("tags/", catalog_tags, name="tags"),
     path("tags/<slug:tag_slug>/", tag_detail, name="tag_detail"),
     # Посты
     path("<slug:post_slug>/", post_detail, name="post_detail"),

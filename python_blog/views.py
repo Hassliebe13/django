@@ -12,11 +12,22 @@ CATEGORIES = [
 
 
 def main(request):
-    return HttpResponse("Главная страница")
+    catalog_categories_url = reverse('blog:categories')
+    catalog_tags_url = reverse('blog:tags')
+
+    return HttpResponse(f"""
+        <h1>Главная страница</h1>
+        <p><a href="{catalog_categories_url}">Каталог категорий</a></p>
+        <p><a href="{catalog_tags_url}">Каталог тегов</a></p>
+                        """)
 
 
 def catalog_posts(reqest):
-    return HttpResponse("Каталог постов")
+    home_url = reverse(main)
+    return HttpResponse(f"""
+                        <h1>Каталог постов</h1>
+                        <p><a href="{home_url}">Главная</a></p>
+                        """)
 
 
 def post_detail(reqest, post_slug):
@@ -26,12 +37,12 @@ def post_detail(reqest, post_slug):
 def catalog_categories(reqest):
     links = []
     for category in CATEGORIES:
-        url = reverse('category_detail', args=[category['slug']])
+        url = reverse('blog:category_detail', args=[category['slug']])
         links.append(f'<p><a href="{url}">{category["name"]}</a></p>')
     return HttpResponse(f"""
                         <h1>Каталог категорий</h1>
                         {''.join(links)}
-                        <p><a href="{reverse('posts')}">К списку постов</a></p>
+                        <p><a href="{reverse('blog:posts')}">К списку постов</a></p>
                         """)
 
 
@@ -44,7 +55,7 @@ def category_detail(reqest, category_slug):
 
     return HttpResponse(f"""
         <h1>Категория: {name}</h1>
-        <p><a href="{reverse('categories')}">Назад к категориям</a></p>""")
+        <p><a href="{reverse('blog:categories')}">Назад к категориям</a></p>""")
 
 
 def catalog_tags(reqest):
